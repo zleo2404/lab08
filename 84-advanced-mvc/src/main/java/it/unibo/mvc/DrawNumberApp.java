@@ -15,8 +15,6 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
     private final List<DrawNumberView> views;
 
     /**
-     * @param configFile
-     *            the configuration file path
      * @param views
      *            the views to attach
      */

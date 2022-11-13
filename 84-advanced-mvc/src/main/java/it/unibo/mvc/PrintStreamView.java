@@ -16,6 +16,8 @@ public final class PrintStreamView implements DrawNumberView {
     private final PrintStream out;
 
     /**
+     * Builds a new PrintStreamView.
+     *
      * @param stream the {@link PrintStream} where to write
      */
     public PrintStreamView(final PrintStream stream) {
