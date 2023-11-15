@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class TestStrictBankAccount {
-
-    private final static int INITIAL_AMOUNT = 100;
+/**
+ * Test class for the {@link StrictBankAccount} class.
+ */
+class TestStrictBankAccount {
 
     // Create a new AccountHolder and a StrictBankAccount for it each time tests are executed.
     private AccountHolder mRossi;
