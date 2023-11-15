@@ -7,17 +7,8 @@ import it.unibo.bank.api.AccountHolder;
  */
 public class StrictBankAccount extends SimpleBankAccount {
 
-    /**
-     * Transaction fee charged to the bank account.
-     */
     public static final double TRANSACTION_FEE = 0.1;
 
-    /**
-     * Builds a new {@link StrictBankAccount}.
-     *
-     * @param accountHolder the account holder
-     * @param balance the initial balance
-     */
     public StrictBankAccount(final AccountHolder accountHolder, final double balance) {
         super(accountHolder, balance);
     }
@@ -29,10 +20,9 @@ public class StrictBankAccount extends SimpleBankAccount {
      * @param usrID the account holder identifier.
      * @throws IllegalArgumentException if the id does not correspond.
      */
-    @Override
     public void chargeManagementFees(final int usrID) {
         final double feeAmount = MANAGEMENT_FEE + getTransactionsCount() * TRANSACTION_FEE;
-        if (checkUser(usrID)) {
+        if (checkUser(usrID) ) {
             if (isWithdrawAllowed(feeAmount)) {
                 setBalance(getBalance() - feeAmount);
                 resetTransactions();
@@ -45,13 +35,11 @@ public class StrictBankAccount extends SimpleBankAccount {
 
     /**
      * Takes an amount of money from the bank account.
-     *
      * @param usrID the account holder identifier.
      * @param amount the amount of money to withdraw into the bank account.
      * @throws IllegalArgumentException if the amount to withdraw is a negative value.
      * @throws IllegalArgumentException if the balance is lower than the amount to take.
      */
-    @Override
     public void withdraw(final int usrID, final double amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Cannot withdraw a negative amount");
