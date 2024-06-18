@@ -21,8 +21,6 @@ public final class AccountHolder {
     }
 
     /**
-     * The name of the account holder.
-     *
      * @return the name of the bank account holder.
      */
     public String getName() {
@@ -30,8 +28,6 @@ public final class AccountHolder {
     }
 
     /**
-     * The surname of the account holder.
-     *
      * @return the surname of the bank account holder.
      */
     public String getSurname() {
@@ -39,8 +35,6 @@ public final class AccountHolder {
     }
 
     /**
-     * The user id of the account holder.
-     *
      * @return the user id of the bank account holder.
      */
     public int getUserID() {
