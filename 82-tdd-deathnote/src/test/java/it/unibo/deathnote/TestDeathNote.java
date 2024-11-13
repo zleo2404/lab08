@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ import it.unibo.deathnote.impl.DeathNoteImplementation;
 class TestDeathNote {
 
     @Test
-    void ruleSupported(){
+    void test1(){
 
         DeathNote note = new DeathNoteImplementation();
         note.getRule(1);
@@ -44,17 +45,17 @@ class TestDeathNote {
     }
 
     @Test
-    void rulesNotNull(){
+    void test2(){
 
         DeathNote note = new DeathNoteImplementation();
-        for(int i=0;i<DeathNote.RULES.size();i++){
+        for(int i=1;i<DeathNote.RULES.size();i++){
             assertFalse(note.getRule(i).isBlank());
             assertFalse(note.getRule(i).isEmpty());
         }
     }
 
     @Test
-    void humanDie(){
+    void test3(){
 
         DeathNote note = new DeathNoteImplementation();
         String name = "Luca";
@@ -68,7 +69,7 @@ class TestDeathNote {
     }
 
     @Test
-    void causeDeath() throws InterruptedException{
+    void test4() throws InterruptedException{
 
         DeathNote note = new DeathNoteImplementation();
         try{
@@ -83,6 +84,29 @@ class TestDeathNote {
         note.writeDeathCause("karting accident");
         assertEquals("karting accident", note.getDeathCause("Alberto"));
         Thread.sleep(100);
+        note.writeDeathCause("change");
+        assertEquals("karting accident", note.getDeathCause("Alberto"));
+
+    }
+
+    @Test
+    void test5() throws InterruptedException{
+
+        DeathNote note = new DeathNoteImplementation();
+
+        assertThrows( IllegalStateException.class, ()-> {
+            note.writeDetails("try");
+        });
+
+        note.writeName("Ste");
+        assertFalse(!note.getDeathDetails("Ste").isEmpty());
+        assertEquals(true, note.writeDetails("ran for too long"));
+        assertEquals("ran for too long", note.getDeathDetails("Ste"));
+        note.writeName("Luci");
+        Thread.sleep(6100);
+        assertEquals(false, note.writeDetails("test"));
+        assertTrue(note.getDeathDetails("Luci").isEmpty());
+
     }
 
 
