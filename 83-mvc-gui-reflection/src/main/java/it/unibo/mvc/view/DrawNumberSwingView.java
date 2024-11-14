@@ -46,10 +46,27 @@ public final class DrawNumberSwingView implements DrawNumberView {
         final JPanel pSouth = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         final JButton bReset = new JButton(RESET);
         final JButton bQuit = new JButton(QUIT);
+        final JButton bNew = new JButton("New Game");
         pSouth.add(bReset);
         pSouth.add(bQuit);
+        pSouth.add(bNew);
         frame.getContentPane().add(pNorth, BorderLayout.NORTH);
         frame.getContentPane().add(pSouth, BorderLayout.SOUTH);
+
+        bNew.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                try {
+                    controller.newAttempt(Integer.parseInt(tNumber.getText()));
+                } catch (NumberFormatException exception) {
+                    showMessageDialog(frame, "Cannot");
+                }
+            }
+
+
+        });
+
         bGo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
